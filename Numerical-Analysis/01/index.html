@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="紅葉"><meta name="copyright" content="紅葉"><meta name="generator" content="Hexo 6.0.0"><meta name="theme" content="hexo-theme-yun"><title>数值分析笔记-01 | 紅葉の森</title><meta name="robots" content="noindex"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.2.4/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/@unocss/runtime/mini.global.js"></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.min.js"></script><script>document.addEventListener("DOMContentLoaded", () => {
+  Yun.utils.renderKatex();
+});</script><link rel="icon" type="image/png" href="/img/favicon.png"><link rel="mask-icon" href="/img/favicon.png" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"jk-momiji.com","root":"/","title":"紅葉の森","version":"1.8.8","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]},"waline":{"config":{"enable":true,"serverURL":"https://waline-server-neon.vercel.app/","comment":true,"visitor":true,"el":"#waline","lang":"zh-CN","path":"/Numerical-Analysis/01/"},"cdn":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"html.dark"},"vendors":{"darken":"https://cdn.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="绪论笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数值分析笔记-01">
+<meta property="og:url" content="http://jk-momiji.com/Numerical-Analysis/01/">
+<meta property="og:site_name" content="紅葉の森">
+<meta property="og:description" content="绪论笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-21T00:01:49.000Z">
+<meta property="article:modified_time" content="2022-02-21T08:28:06.852Z">
+<meta property="article:author" content="紅葉">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="数值分析">
+<meta name="twitter:card" content="summary"><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="紅葉"><img width="96" loading="lazy" src="/img/avatar.png" alt="紅葉"></a><div class="site-author-name"><a href="/about/">紅葉</a></div><span class="site-name">紅葉の森</span><sub class="site-subtitle">记录每一个思想的火花</sub><div class="site-desciption">Cogito, ergo sum.</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">12</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">5</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">18</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/Jk-Cheung" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:jk.momiji1230@gmail.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">计算对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number">2.</span> <span class="toc-text">数值方法设计原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90"><span class="toc-number">2.1.</span> <span class="toc-text">可靠性分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E6%80%A7%E5%88%86%E6%9E%90"><span class="toc-number">2.2.</span> <span class="toc-text">计算复杂性分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E6%9D%A5%E6%BA%90%E4%B8%8E%E6%A6%82%E5%BF%B5"><span class="toc-number">3.</span> <span class="toc-text">误差来源与概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E6%9D%A5%E6%BA%90%E4%B8%8E%E5%88%86%E7%B1%BB"><span class="toc-number">3.1.</span> <span class="toc-text">误差来源与分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">3.2.</span> <span class="toc-text">误差分析的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E8%AF%AF%E5%B7%AE"><span class="toc-number">3.2.1.</span> <span class="toc-text">绝对误差:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%AF%B9%E8%AF%AF%E5%B7%AE"><span class="toc-number">3.2.2.</span> <span class="toc-text">相对误差</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E7%9A%84%E4%BC%A0%E6%92%AD"><span class="toc-number">3.3.</span> <span class="toc-text">误差的传播</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E6%95%88%E6%95%B0%E5%AD%97"><span class="toc-number">3.4.</span> <span class="toc-text">有效数字</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E6%95%88%E6%95%B0%E5%AD%97%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">3.4.1.</span> <span class="toc-text">有效数字的定义</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97%E4%B8%AD%E8%AF%AF%E5%B7%AE%E5%8D%B1%E5%AE%B3%E7%9A%84%E9%98%B2%E6%AD%A2"><span class="toc-number">4.</span> <span class="toc-text">数值计算中误差危害的防止</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%95%B0%E5%80%BC%E7%A8%B3%E5%AE%9A%E7%9A%84%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F"><span class="toc-number">4.1.</span> <span class="toc-text">使用数值稳定的计算公式.</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="toc-number">4.1.1.</span> <span class="toc-text">数值稳定性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E7%A8%B3%E5%AE%9A"><span class="toc-number">4.1.2.</span> <span class="toc-text">绝对稳定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E7%9B%B8%E8%BF%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%87%8F"><span class="toc-number">4.2.</span> <span class="toc-text">避免相近两数相减</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%A4%E6%95%B0%E5%B7%AE%E7%9A%84%E7%9B%B8%E5%AF%B9%E8%AF%AF%E5%B7%AE%E5%85%B3%E7%B3%BB%E5%BC%8F"><span class="toc-number">4.2.1.</span> <span class="toc-text">根据两数差的相对误差关系式:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%A5%E9%87%8D%E6%8D%9F%E5%A4%B1%E6%9C%89%E6%95%88%E6%95%B0%E5%AD%97"><span class="toc-number">4.2.2.</span> <span class="toc-text">严重损失有效数字</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E7%BB%9D%E5%AF%B9%E5%80%BC%E5%BE%88%E5%A4%A7%E7%9A%84%E6%95%B0%E5%81%9A%E4%B9%98%E6%95%B0-%E9%81%BF%E5%85%8D%E5%B0%8F%E5%88%86%E6%AF%8D"><span class="toc-number">4.3.</span> <span class="toc-text">避免绝对值很大的数做乘数(避免小分母)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E5%A4%A7%E6%95%B0%E5%90%83%E5%B0%8F%E6%95%B0"><span class="toc-number">4.4.</span> <span class="toc-text">避免大数吃小数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%AE%80%E5%8C%96%E8%AE%A1%E7%AE%97%E6%AD%A5%E9%AA%A4-%E5%87%8F%E5%B0%91%E8%BF%90%E7%AE%97%E6%AC%A1%E6%95%B0"><span class="toc-number">4.5.</span> <span class="toc-text">注意简化计算步骤, 减少运算次数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95-Horner-%E7%AE%97%E6%B3%95"><span class="toc-number">4.5.1.</span> <span class="toc-text">秦九韶算法(Horner 算法)</span></a></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="http://jk-momiji.com/Numerical-Analysis/01/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="紅葉"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="紅葉の森"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">数值分析笔记-01</h1><div class="post-meta"><div class="post-time"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2022-02-21 08:01:49" itemprop="dateCreated datePublished" datetime="2022-02-21T08:01:49+08:00">2022-02-21</time></div><span class="leancloud_visitors" id="/Numerical-Analysis/01/" data-flag-title="数值分析笔记-01"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-chat-3-line"></use></svg> <span class="waline-comment-count" id="/Numerical-Analysis/01/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">学习笔记</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E6%95%B0%E5%AD%A6/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">数学</span></a><a class="tag-item" href="/tags/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">数值分析</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><p>绪论笔记  </p>
+<span id="more"></span>
+
+<h2 id="计算对象"><a href="#计算对象" class="headerlink" title="计算对象"></a>计算对象</h2><ul>
+<li>有解析解但难以手工计算.  </li>
+<li>理论上有解但无公式的.</li>
+</ul>
+<h2 id="数值方法设计原则"><a href="#数值方法设计原则" class="headerlink" title="数值方法设计原则"></a>数值方法设计原则</h2><h3 id="可靠性分析"><a href="#可靠性分析" class="headerlink" title="可靠性分析"></a>可靠性分析</h3><ul>
+<li>收敛性.  </li>
+<li>稳定性.  </li>
+<li>误差估计.</li>
+</ul>
+<h3 id="计算复杂性分析"><a href="#计算复杂性分析" class="headerlink" title="计算复杂性分析"></a>计算复杂性分析</h3><ul>
+<li>便于编程实现.  </li>
+<li>计算量小.  </li>
+<li>存储空间小.</li>
+</ul>
+<h2 id="误差来源与概念"><a href="#误差来源与概念" class="headerlink" title="误差来源与概念"></a>误差来源与概念</h2><h3 id="误差来源与分类"><a href="#误差来源与分类" class="headerlink" title="误差来源与分类"></a>误差来源与分类</h3><ul>
+<li>模型误差.  </li>
+<li>观测误差.  </li>
+<li>截断误差.  </li>
+<li>舍入误差.</li>
+</ul>
+<h3 id="误差分析的基本概念"><a href="#误差分析的基本概念" class="headerlink" title="误差分析的基本概念"></a>误差分析的基本概念</h3><p>以下 $x^*$ 表示精确值.  </p>
+<h4 id="绝对误差"><a href="#绝对误差" class="headerlink" title="绝对误差:"></a>绝对误差:</h4><p>$$<br>e &#x3D; x^* - x<br>$$</p>
+<p>注:  </p>
+<ul>
+<li>误差可正可负.  </li>
+<li>绝对误差限: 绝对误差的绝对值的上界.  </li>
+<li>绝对误差不能完全表示近似值的好坏.</li>
+</ul>
+<h4 id="相对误差"><a href="#相对误差" class="headerlink" title="相对误差"></a>相对误差</h4><p>$$<br>\frac{e}{x^*} &#x3D; \frac{x^*- x}{x^*}<br>$$</p>
+<p>注:  </p>
+<ul>
+<li>实际计算中, 相对误差通常取:</li>
+</ul>
+<p>$$<br>\frac{e}{x} &#x3D; \frac {x^*- x}{x}.<br>$$</p>
+<ul>
+<li>相对误差也可正可负.  </li>
+<li>相对误差限: 相对误差的绝对值的上界.</li>
+</ul>
+<h3 id="误差的传播"><a href="#误差的传播" class="headerlink" title="误差的传播"></a>误差的传播</h3><p>将 $f(x_1, x_2)$ 在 $(x_1^*, x_2^*)$ 展开, 代入 $e(y) &#x3D; y - y_* &#x3D; f(x_1, x_2) - f(x_1^*, x_2^*)$ , 得到:  </p>
+<p>$$<br>e(y) &#x3D; \frac{\partial{f(x_1^*, x_2^*)}}{\partial{x_1}}e(x_1) + \frac{\partial{f(x_1^*, x_2^*)}}{\partial{x_2}}e(x_2)<br>$$</p>
+<p>相对误差:  </p>
+<p>$$<br>e_r(y) &#x3D; \frac{\partial{f(x_1^*, x_2^*)}}{\partial{x_1}}\frac{x_1}{y}e_r(x_1) + \frac{\partial{f(x_1^*, x_2^*)}}{\partial{x_2}}\frac{x_2}{y}e_r(x_2)<br>$$</p>
+<p>一些简单二元函数的误差:  </p>
+<p>$$<br>e(x_1 \pm x_2) \approx e_1 \pm e_2\<br>e(x_1x_2) \approx x_2e_1 + x_1e_2<br>e(\frac{x_1}{x_2}) \approx \frac{e_1}{x_2} - \frac{e_2x_1}{x_2^2}, x_2 \not&#x3D; 0</p>
+<p>$$</p>
+<h3 id="有效数字"><a href="#有效数字" class="headerlink" title="有效数字"></a>有效数字</h3><h4 id="有效数字的定义"><a href="#有效数字的定义" class="headerlink" title="有效数字的定义"></a>有效数字的定义</h4><p>若近似值 $x$ 与准确值的误差绝对值不超过某一位的半个单位, 该位到 $x$ 的第一位非零数字共有 $n$ 位, 则称 $x$ 有 $x$ 位有效数字.   </p>
+<p>将 $x$ 表示为:  </p>
+<p>$$<br>x &#x3D; \pm 10^m \times (a_1 + a_2 \times 10^{-1} + \cdots + a_n \times 10^{-n}), a_i \in \mathbb{N}<br>$$</p>
+<p>其中 $a_1 \not&#x3D; 0$, 且:  </p>
+<p>$$<br>|x - x^*| \leq \frac{1}{2} \times 10^{m - n + 1}<br>$$</p>
+<p>注:  </p>
+<ul>
+<li>若 $x$ 的每一位都是有效数字, 则称其为<strong>有效数</strong>.  </li>
+<li>特别地, 经过<strong>四舍五入</strong>得到的数均为有效数.  </li>
+<li>有效数字越多, 误差越小, 计算结果越精确.  </li>
+<li>数字末尾的 0 <strong>不可随意省去</strong> .</li>
+</ul>
+<h2 id="数值计算中误差危害的防止"><a href="#数值计算中误差危害的防止" class="headerlink" title="数值计算中误差危害的防止"></a>数值计算中误差危害的防止</h2><h3 id="使用数值稳定的计算公式"><a href="#使用数值稳定的计算公式" class="headerlink" title="使用数值稳定的计算公式."></a>使用数值稳定的计算公式.</h3><h4 id="数值稳定性"><a href="#数值稳定性" class="headerlink" title="数值稳定性"></a>数值稳定性</h4><p>一个算法如果输入数据有扰动(即误差), 而计算过程中舍入误差对计算结果影响不大, 则称此算法为 <strong>数值稳定</strong> 的, 否则就是 <strong>不稳定的</strong> .  </p>
+<h4 id="绝对稳定"><a href="#绝对稳定" class="headerlink" title="绝对稳定"></a>绝对稳定</h4><p>若第 n+1 步的误差 $e_n+1$ 与第 n 步的误差 $ e_n$ 满足:  </p>
+<p>$$<br>|\frac{e_n+1}{e_n}| \leq 1<br>$$</p>
+<p>则称此算法为 <strong>绝对稳定</strong> 的, 否则称为 <strong>不绝对稳定</strong> 的.  </p>
+<h3 id="避免相近两数相减"><a href="#避免相近两数相减" class="headerlink" title="避免相近两数相减"></a>避免相近两数相减</h3><h4 id="根据两数差的相对误差关系式"><a href="#根据两数差的相对误差关系式" class="headerlink" title="根据两数差的相对误差关系式:"></a>根据两数差的相对误差关系式:</h4><p>$$<br>e_r(x_1 - x_2) \approx \frac{x_1}{x_1 - x_2}e_r(x) - \frac{x_2}{x_1 - x_2}e_r(x_2)<br>$$</p>
+<p>则 $|e_r(x_1 - x_2)|$ 可能比 $|e_r(x_1)| + |e_r(x_2)|$ 大很多.  </p>
+<h4 id="严重损失有效数字"><a href="#严重损失有效数字" class="headerlink" title="严重损失有效数字"></a>严重损失有效数字</h4><p>如: $a_1 &#x3D; 0.12345, a_2 &#x3D; 0.12346$, 各有五位有效数字. 而 $a_2 - a_1 &#x3D; 0.00001$ , 只剩下 <strong>1</strong> 位有效数字.  </p>
+<p>几种经验性避免方法:  </p>
+<ol>
+<li>$\sqrt{x + \epsilon} - \sqrt{x} &#x3D; \frac{\epsilon}{\sqrt{x + \epsilon} + \sqrt{x}}$</li>
+<li>$\ln{(x + \epsilon)} - \ln{x} &#x3D; \ln{(1 + \frac{\epsilon}{x})}$</li>
+<li>$1 - \cos{x} &#x3D; 2 \sin^2{\frac{x}{2}}, |x| \ll 1$</li>
+<li>$e^x - 1 &#x3D; x(1 + \frac{1}{2}x + \frac{1}{6}x^2 + \cdots), |x| \ll 1$</li>
+</ol>
+<h3 id="避免绝对值很大的数做乘数-避免小分母"><a href="#避免绝对值很大的数做乘数-避免小分母" class="headerlink" title="避免绝对值很大的数做乘数(避免小分母)"></a>避免绝对值很大的数做乘数(避免小分母)</h3><p>分母小会造成浮点溢出.  </p>
+<h3 id="避免大数吃小数"><a href="#避免大数吃小数" class="headerlink" title="避免大数吃小数"></a>避免大数吃小数</h3><p>计算机内, $10000$ 存为 $0.1000 \times 10^5$, $1$ 存为 $0.1000 \times 10^1$, 做加法时, 首先对加数作 <strong>对阶处理</strong>, 两指数先向 <strong>大指数对齐</strong> , 再将浮点数相加.<br>因此, 在求和的时候, 从小到大相加, 可是使和的误差减小.  </p>
+<h3 id="注意简化计算步骤-减少运算次数"><a href="#注意简化计算步骤-减少运算次数" class="headerlink" title="注意简化计算步骤, 减少运算次数"></a>注意简化计算步骤, 减少运算次数</h3><p>如计算 $x^{31}$, 将 $x$ 的值逐个相乘, 需做 30 次乘法, 若令:  </p>
+<p>$$<br>x_2 &#x3D; xx, x_4 &#x3D; x_2x_2, x_8 &#x3D; x_4x_4, x_16 &#x3D; x_8x_8<br>$$</p>
+<p>则 $x^{31} &#x3D; \frac{x_{16}x_{16}}{x}$ 只需要 6 次运算.  </p>
+<h4 id="秦九韶算法-Horner-算法"><a href="#秦九韶算法-Horner-算法" class="headerlink" title="秦九韶算法(Horner 算法)"></a>秦九韶算法(Horner 算法)</h4><p>计算多项式 $f(x) &#x3D; a_nx^n + a_{n-1}x^{n-1} + \cdots + a_{n-1}x + a_n$ .<br>若直接计算需要 $\frac{n(n+1)}{2}$ 次乘法和 $n$ 次加法.  </p>
+<p>令:  </p>
+<p>$$<br>b_0 &#x3D; a_0\<br>b_1 &#x3D; b_0x + a_1<br>b_2 &#x3D; b_1x + a_2<br>\cdots<br>b_k &#x3D; b_{k-1}x + a_k<br>\cdots<br>b_n &#x3D; b_{n-1}x + a_n &#x3D; f(x)<br>$$</p>
+<p>只需做 $n$ 次乘法和 $n$ 次加法.  </p>
+<!-- flag of hidden posts --></div></section><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">我很可爱，请给我钱</div><div id="qr" style="display:none;"><div style="display:inline-block"><a href="/img/alipay.jpg"><img loading="lazy" src="/img/alipay.jpg" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-alipay-line"></use></svg></span></div></div><div style="display:inline-block"><a href="/img/wechatpay.png"><img loading="lazy" src="/img/wechatpay.png" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-pay-line"></use></svg></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>紅葉</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://jk-momiji.com/Numerical-Analysis/01/" title="数值分析笔记-01">http://jk-momiji.com/Numerical-Analysis/01/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul><script>document.addEventListener('copy', function (event) {
+  const clipboardData = event.clipboardData || window.clipboardData;
+  if (!clipboardData) { return; }
+  const text = window.getSelection().toString();
+  if (text) {
+    event.preventDefault();
+    clipboardData.setData('text/plain', text + '\n\n本文作者：紅葉\n本文链接：http://jk-momiji.com/Numerical-Analysis/01/\n版权声明：本博客所有文章除特别声明外，均默认采用 CC BY-NC-SA 4.0 许可协议。');
+  }
+});</script></article></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>要不要和我说些什么？</span><br><span>请文明评论哦~</span><br></div><div id="waline"></div><script src="/js/comments/waline.js" type="module" defer></script></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2022 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> 紅葉</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.0.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.8.8</span></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div></body></html>
