@@ -29,7 +29,7 @@ document.addEventListener("pjax:success", initScrollReveal);
 <meta property="og:description" content="绪论笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-21T00:01:49.000Z">
-<meta property="article:modified_time" content="2022-02-21T08:40:36.076Z">
+<meta property="article:modified_time" content="2022-02-21T15:58:58.226Z">
 <meta property="article:author" content="紅葉">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="数值分析">
@@ -62,35 +62,34 @@ document.addEventListener("pjax:success", initScrollReveal);
 <li>舍入误差.</li>
 </ul>
 <h3 id="误差分析的基本概念"><a href="#误差分析的基本概念" class="headerlink" title="误差分析的基本概念"></a>误差分析的基本概念</h3><p>以下 $x^*$ 表示精确值.  </p>
-<h4 id="绝对误差"><a href="#绝对误差" class="headerlink" title="绝对误差:"></a>绝对误差:</h4><p>$$<br>e &#x3D; x^* - x<br>$$</p>
+<h4 id="绝对误差"><a href="#绝对误差" class="headerlink" title="绝对误差:"></a>绝对误差:</h4><p>$$e &#x3D; x^* - x$$</p>
 <p>注:  </p>
 <ul>
 <li>误差可正可负.  </li>
 <li>绝对误差限: 绝对误差的绝对值的上界.  </li>
 <li>绝对误差不能完全表示近似值的好坏.</li>
 </ul>
-<h4 id="相对误差"><a href="#相对误差" class="headerlink" title="相对误差"></a>相对误差</h4><p>$$<br>\frac{e}{x^*} &#x3D; \frac{x^*- x}{x^*}<br>$$</p>
+<h4 id="相对误差"><a href="#相对误差" class="headerlink" title="相对误差"></a>相对误差</h4><p>$$\frac{e}{x^*} &#x3D; \frac{x^*- x}{x^*}$$</p>
 <p>注:  </p>
 <ul>
 <li>实际计算中, 相对误差通常取:</li>
 </ul>
-<p>$$<br>\frac{e}{x} &#x3D; \frac {x^*- x}{x}.<br>$$</p>
+<p>$$\frac{e}{x} &#x3D; \frac {x^*- x}{x}.$$</p>
 <ul>
 <li>相对误差也可正可负.  </li>
 <li>相对误差限: 相对误差的绝对值的上界.</li>
 </ul>
 <h3 id="误差的传播"><a href="#误差的传播" class="headerlink" title="误差的传播"></a>误差的传播</h3><p>将 $f(x_1, x_2)$ 在 $(x_1^*, x_2^*)$ 展开, 代入 $e(y) &#x3D; y - y_* &#x3D; f(x_1, x_2) - f(x_1^*, x_2^*)$ , 得到:  </p>
-<p>$$<br>e(y) &#x3D; \frac{\partial{f(x_1^*, x_2^*)}}{\partial{x_1}}e(x_1) + \frac{\partial{f(x_1^*, x_2^*)}}{\partial{x_2}}e(x_2)<br>$$</p>
+<p>$$e(y) &#x3D; \frac{\partial{f(x_1^*, x_2^*)}}{\partial{x_1}}e(x_1) + \frac{\partial{f(x_1^*, x_2^*)}}{\partial{x_2}}e(x_2)$$</p>
 <p>相对误差:  </p>
-<p>$$<br>e_r(y) &#x3D; \frac{\partial{f(x_1^*, x_2^*)}}{\partial{x_1}}\frac{x_1}{y}e_r(x_1) + \frac{\partial{f(x_1^*, x_2^*)}}{\partial{x_2}}\frac{x_2}{y}e_r(x_2)<br>$$</p>
+<p>$$e_r(y) &#x3D; \frac{\partial{f(x_1^*, x_2^*)}}{\partial{x_1}}\frac{x_1}{y}e_r(x_1) + \frac{\partial{f(x_1^*, x_2^*)}}{\partial{x_2}}\frac{x_2}{y}e_r(x_2)$$</p>
 <p>一些简单二元函数的误差:  </p>
-<p>$$<br>e(x_1 \pm x_2) \approx e_1 \pm e_2\<br>e(x_1x_2) \approx x_2e_1 + x_1e_2<br>e(\frac{x_1}{x_2}) \approx \frac{e_1}{x_2} - \frac{e_2x_1}{x_2^2}, x_2 \not&#x3D; 0</p>
-<p>$$</p>
+<p>$$e(x_1 \pm x_2) \approx e_1 \pm e_2\\  e(x_1x_2) \approx x_2e_1 + x_1e_2\\e(\frac{x_1}{x_2}) \approx \frac{e_1}{x_2} - \frac{e_2x_1}{x_2^2}, x_2 \not&#x3D; 0$$</p>
 <h3 id="有效数字"><a href="#有效数字" class="headerlink" title="有效数字"></a>有效数字</h3><h4 id="有效数字的定义"><a href="#有效数字的定义" class="headerlink" title="有效数字的定义"></a>有效数字的定义</h4><p>若近似值 $x$ 与准确值的误差绝对值不超过某一位的半个单位, 该位到 $x$ 的第一位非零数字共有 $n$ 位, 则称 $x$ 有 $x$ 位有效数字.   </p>
 <p>将 $x$ 表示为:  </p>
-<p>$$<br>x &#x3D; \pm 10^m \times (a_1 + a_2 \times 10^{-1} + \cdots + a_n \times 10^{-n}), a_i \in \mathbb{N}<br>$$</p>
+<p>$$x &#x3D; \pm 10^m \times (a_1 + a_2 \times 10^{-1} + \cdots + a_n \times 10^{-n}), a_i \in \mathbb{N}$$</p>
 <p>其中 $a_1 \not&#x3D; 0$, 且:  </p>
-<p>$$<br>|x - x^*| \leq \frac{1}{2} \times 10^{m - n + 1}<br>$$</p>
+<p>$$|x - x^*| \leq \frac{1}{2} \times 10^{m - n + 1}$$</p>
 <p>注:  </p>
 <ul>
 <li>若 $x$ 的每一位都是有效数字, 则称其为<strong>有效数</strong>.  </li>
@@ -100,9 +99,9 @@ document.addEventListener("pjax:success", initScrollReveal);
 </ul>
 <h2 id="数值计算中误差危害的防止"><a href="#数值计算中误差危害的防止" class="headerlink" title="数值计算中误差危害的防止"></a>数值计算中误差危害的防止</h2><h3 id="使用数值稳定的计算公式"><a href="#使用数值稳定的计算公式" class="headerlink" title="使用数值稳定的计算公式."></a>使用数值稳定的计算公式.</h3><h4 id="数值稳定性"><a href="#数值稳定性" class="headerlink" title="数值稳定性"></a>数值稳定性</h4><p>一个算法如果输入数据有扰动(即误差), 而计算过程中舍入误差对计算结果影响不大, 则称此算法为 <strong>数值稳定</strong> 的, 否则就是 <strong>不稳定的</strong> .  </p>
 <h4 id="绝对稳定"><a href="#绝对稳定" class="headerlink" title="绝对稳定"></a>绝对稳定</h4><p>若第 n+1 步的误差 $e_n+1$ 与第 n 步的误差 $ e_n$ 满足:  </p>
-<p>$$<br>|\frac{e_n+1}{e_n}| \leq 1<br>$$</p>
+<p>$$|\frac{e_n+1}{e_n}| \leq 1$$</p>
 <p>则称此算法为 <strong>绝对稳定</strong> 的, 否则称为 <strong>不绝对稳定</strong> 的.  </p>
-<h3 id="避免相近两数相减"><a href="#避免相近两数相减" class="headerlink" title="避免相近两数相减"></a>避免相近两数相减</h3><h4 id="根据两数差的相对误差关系式"><a href="#根据两数差的相对误差关系式" class="headerlink" title="根据两数差的相对误差关系式:"></a>根据两数差的相对误差关系式:</h4><p>$$<br>e_r(x_1 - x_2) \approx \frac{x_1}{x_1 - x_2}e_r(x) - \frac{x_2}{x_1 - x_2}e_r(x_2)<br>$$</p>
+<h3 id="避免相近两数相减"><a href="#避免相近两数相减" class="headerlink" title="避免相近两数相减"></a>避免相近两数相减</h3><h4 id="根据两数差的相对误差关系式"><a href="#根据两数差的相对误差关系式" class="headerlink" title="根据两数差的相对误差关系式:"></a>根据两数差的相对误差关系式:</h4><p>$$e_r(x_1 - x_2) \approx \frac{x_1}{x_1 - x_2}e_r(x) - \frac{x_2}{x_1 - x_2}e_r(x_2)$$</p>
 <p>则 $|e_r(x_1 - x_2)|$ 可能比 $|e_r(x_1)| + |e_r(x_2)|$ 大很多.  </p>
 <h4 id="严重损失有效数字"><a href="#严重损失有效数字" class="headerlink" title="严重损失有效数字"></a>严重损失有效数字</h4><p>如: $a_1 &#x3D; 0.12345, a_2 &#x3D; 0.12346$, 各有五位有效数字. 而 $a_2 - a_1 &#x3D; 0.00001$ , 只剩下 <strong>1</strong> 位有效数字.  </p>
 <p>几种经验性避免方法:  </p>
@@ -115,11 +114,11 @@ document.addEventListener("pjax:success", initScrollReveal);
 <h3 id="避免绝对值很大的数做乘数-避免小分母"><a href="#避免绝对值很大的数做乘数-避免小分母" class="headerlink" title="避免绝对值很大的数做乘数(避免小分母)"></a>避免绝对值很大的数做乘数(避免小分母)</h3><p>分母小会造成浮点溢出.  </p>
 <h3 id="避免大数吃小数"><a href="#避免大数吃小数" class="headerlink" title="避免大数吃小数"></a>避免大数吃小数</h3><p>计算机内, $10000$ 存为 $0.1000 \times 10^5$, $1$ 存为 $0.1000 \times 10^1$, 做加法时, 首先对加数作 <strong>对阶处理</strong>, 两指数先向 <strong>大指数对齐</strong> , 再将浮点数相加.<br>因此, 在求和的时候, 从小到大相加, 可是使和的误差减小.  </p>
 <h3 id="注意简化计算步骤-减少运算次数"><a href="#注意简化计算步骤-减少运算次数" class="headerlink" title="注意简化计算步骤, 减少运算次数"></a>注意简化计算步骤, 减少运算次数</h3><p>如计算 $x^{31}$, 将 $x$ 的值逐个相乘, 需做 30 次乘法, 若令:  </p>
-<p>$$<br>x_2 &#x3D; xx, x_4 &#x3D; x_2x_2, x_8 &#x3D; x_4x_4, x_16 &#x3D; x_8x_8<br>$$</p>
+<p>$$x_2 &#x3D; xx, x_4 &#x3D; x_2x_2, x_8 &#x3D; x_4x_4, x_16 &#x3D; x_8x_8$$</p>
 <p>则 $x^{31} &#x3D; \frac{x_{16}x_{16}}{x}$ 只需要 6 次运算.  </p>
 <h4 id="秦九韶算法-Horner-算法"><a href="#秦九韶算法-Horner-算法" class="headerlink" title="秦九韶算法(Horner 算法)"></a>秦九韶算法(Horner 算法)</h4><p>计算多项式 $f(x) &#x3D; a_nx^n + a_{n-1}x^{n-1} + \cdots + a_{n-1}x + a_n$ .<br>若直接计算需要 $\frac{n(n+1)}{2}$ 次乘法和 $n$ 次加法.  </p>
 <p>令:  </p>
-<p>$$<br>b_0 &#x3D; a_0\<br>b_1 &#x3D; b_0x + a_1<br>b_2 &#x3D; b_1x + a_2<br>\cdots<br>b_k &#x3D; b_{k-1}x + a_k<br>\cdots<br>b_n &#x3D; b_{n-1}x + a_n &#x3D; f(x)<br>$$</p>
+<p>$$b_0 &#x3D; a_0\\b_1 &#x3D; b_0x + a_1\\b_2 &#x3D; b_1x + a_2\\\cdots\\b_k &#x3D; b_{k-1}x + a_k\\\cdots\\b_n &#x3D; b_{n-1}x + a_n &#x3D; f(x)$$</p>
 <p>只需做 $n$ 次乘法和 $n$ 次加法.  </p>
 </div></section><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">我很可爱，请给我钱</div><div id="qr" style="display:none;"><div style="display:inline-block"><a href="/img/alipay.jpg"><img loading="lazy" src="/img/alipay.jpg" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-alipay-line"></use></svg></span></div></div><div style="display:inline-block"><a href="/img/wechatpay.png"><img loading="lazy" src="/img/wechatpay.png" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-pay-line"></use></svg></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>紅葉</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://jk-momiji.com/Numerical-Analysis/01/" title="数值分析笔记-01">http://jk-momiji.com/Numerical-Analysis/01/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul><script>document.addEventListener('copy', function (event) {
   const clipboardData = event.clipboardData || window.clipboardData;
