@@ -1,32 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://jk-momiji.com/Numerical-Analysis/01/</loc>
+    <lastmod>2022-02-26</lastmod>
+  </url>
+  <url>
     <loc>http://jk-momiji.com/Numerical-Analysis/02/</loc>
     <lastmod>2022-02-26</lastmod>
   </url>
   <url>
-    <loc>http://jk-momiji.com/Partial-Differential-Equations/01/</loc>
-    <lastmod>2022-02-24</lastmod>
-  </url>
-  <url>
-    <loc>http://jk-momiji.com/Probability-Theory-and-Mathematical-Statistics/01/</loc>
-    <lastmod>2022-02-24</lastmod>
-  </url>
-  <url>
-    <loc>http://jk-momiji.com/Elementary-Number-Theory/01/</loc>
-    <lastmod>2022-02-23</lastmod>
-  </url>
-  <url>
-    <loc>http://jk-momiji.com/Numerical-Analysis/01/</loc>
-    <lastmod>2022-02-21</lastmod>
+    <loc>http://jk-momiji.com/WSL2-On-Windows11/</loc>
+    <lastmod>2022-02-26</lastmod>
   </url>
   <url>
     <loc>http://jk-momiji.com/DeepLearning/01/</loc>
-    <lastmod>2022-02-14</lastmod>
+    <lastmod>2022-02-26</lastmod>
   </url>
   <url>
-    <loc>http://jk-momiji.com/WSL2-On-Windows11/</loc>
-    <lastmod>2022-02-11</lastmod>
+    <loc>http://jk-momiji.com/Django/02/</loc>
+    <lastmod>2022-02-26</lastmod>
+  </url>
+  <url>
+    <loc>http://jk-momiji.com/Django/01/</loc>
+    <lastmod>2022-02-26</lastmod>
+  </url>
+  <url>
+    <loc>http://jk-momiji.com/Frank-Thilly/History-of-Western-Philosophy/Natural-Philosophy/</loc>
+    <lastmod>2022-02-26</lastmod>
+  </url>
+  <url>
+    <loc>http://jk-momiji.com/Plan/2022/</loc>
+    <lastmod>2022-02-26</lastmod>
+  </url>
+  <url>
+    <loc>http://jk-momiji.com/Elementary-Number-Theory/01/</loc>
+    <lastmod>2022-02-26</lastmod>
+  </url>
+  <url>
+    <loc>http://jk-momiji.com/Probability-Theory-and-Mathematical-Statistics/01/</loc>
+    <lastmod>2022-02-26</lastmod>
+  </url>
+  <url>
+    <loc>http://jk-momiji.com/Partial-Differential-Equations/01/</loc>
+    <lastmod>2022-02-26</lastmod>
   </url>
   <url>
     <loc>http://jk-momiji.com/Ortools/Linear-Optimization/</loc>
@@ -41,27 +57,11 @@
     <lastmod>2022-02-10</lastmod>
   </url>
   <url>
-    <loc>http://jk-momiji.com/Frank-Thilly/History-of-Western-Philosophy/Natural-Philosophy/</loc>
-    <lastmod>2022-02-10</lastmod>
-  </url>
-  <url>
-    <loc>http://jk-momiji.com/Django/01/</loc>
-    <lastmod>2022-02-10</lastmod>
-  </url>
-  <url>
     <loc>http://jk-momiji.com/Hugo-Talk-About-Slang/</loc>
     <lastmod>2022-02-10</lastmod>
   </url>
   <url>
-    <loc>http://jk-momiji.com/Django/02/</loc>
-    <lastmod>2022-02-10</lastmod>
-  </url>
-  <url>
     <loc>http://jk-momiji.com/Increasingly-Apathetic-People/</loc>
-    <lastmod>2022-02-07</lastmod>
-  </url>
-  <url>
-    <loc>http://jk-momiji.com/Plan/2022/</loc>
     <lastmod>2022-02-07</lastmod>
   </url>
 </urlset> 
