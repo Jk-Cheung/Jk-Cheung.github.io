@@ -380,6 +380,13 @@
   </url>
   
   <url>
+    <loc>http://jk-momiji.com/tags/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2/</loc>
+    <lastmod>2022-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://jk-momiji.com/tags/Web%E7%9B%B8%E5%85%B3/</loc>
     <lastmod>2022-03-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -401,28 +408,7 @@
   </url>
   
   <url>
-    <loc>http://jk-momiji.com/tags/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2/</loc>
-    <lastmod>2022-03-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://jk-momiji.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2022-03-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://jk-momiji.com/tags/%E6%95%B0%E5%AD%A6/</loc>
-    <lastmod>2022-03-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://jk-momiji.com/tags/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/</loc>
     <lastmod>2022-03-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -451,6 +437,20 @@
   
   <url>
     <loc>http://jk-momiji.com/tags/Linux/</loc>
+    <lastmod>2022-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://jk-momiji.com/tags/%E6%95%B0%E5%AD%A6/</loc>
+    <lastmod>2022-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://jk-momiji.com/tags/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/</loc>
     <lastmod>2022-03-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
