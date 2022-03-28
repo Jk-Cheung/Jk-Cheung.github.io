@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="紅葉"><meta name="copyright" content="紅葉"><meta name="generator" content="Hexo 6.0.0"><meta name="theme" content="hexo-theme-yun"><title>偏微分方程笔记-03 | 紅葉の森</title><meta name="robots" content="noindex"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.2.4/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/@unocss/runtime/mini.global.js"></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/png" href="/img/favicon.png"><link rel="mask-icon" href="/img/favicon.png" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"jk-momiji.com","root":"/","title":"紅葉の森","version":"1.8.8","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]},"waline":{"config":{"enable":true,"serverURL":"https://waline-server-neon.vercel.app/","comment":true,"visitor":false,"el":"#waline","lang":"zh-CN","path":"/Partial-Differential-Equations/03/"},"cdn":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"html.dark"},"vendors":{"darken":"https://cdn.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="本节主要讨论 PDE 的定解问题.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="偏微分方程笔记-03">
+<meta property="og:url" content="http://jk-momiji.com/Partial-Differential-Equations/03/">
+<meta property="og:site_name" content="紅葉の森">
+<meta property="og:description" content="本节主要讨论 PDE 的定解问题.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-23T02:36:35.000Z">
+<meta property="article:modified_time" content="2022-03-27T08:21:51.572Z">
+<meta property="article:author" content="紅葉">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="偏微分方程">
+<meta name="twitter:card" content="summary"><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="紅葉"><img width="96" loading="lazy" src="/img/avatar.png" alt="紅葉"></a><div class="site-author-name"><a href="/about/">紅葉</a></div><span class="site-name">紅葉の森</span><sub class="site-subtitle">记录每一个思想的火花</sub><div class="site-desciption">Cogito, ergo sum.</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">27</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">6</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">25</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/Jk-Cheung" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:jk.momiji1230@gmail.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/resources/" title="资源" style="color:green"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E5%AE%9A%E8%A7%A3%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">定解问题与定解条件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">初始条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text">边界条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text">定解问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E7%9A%84%E9%80%82%E5%AE%9A%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">定解问题的适定性</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="http://jk-momiji.com/Partial-Differential-Equations/03/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="紅葉"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="紅葉の森"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">偏微分方程笔记-03</h1><div class="post-meta"><div class="post-time"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2022-03-23 10:36:35" itemprop="dateCreated datePublished" datetime="2022-03-23T10:36:35+08:00">2022-03-23</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2022-03-27 16:21:51" itemprop="dateModified" datetime="2022-03-27T16:21:51+08:00">2022-03-27</time></div><span class="post-busuanzi"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span id="busuanzi_value_page_pv"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-chat-3-line"></use></svg> <span class="waline-comment-count" id="/Partial-Differential-Equations/03/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">学习笔记</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E6%95%B0%E5%AD%A6/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">数学</span></a><a class="tag-item" href="/tags/%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">偏微分方程</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><p>本节主要讨论 PDE 的定解问题.  </p>
+<span id="more"></span>
+
+<h2 id="定解问题与定解条件"><a href="#定解问题与定解条件" class="headerlink" title="定解问题与定解条件"></a>定解问题与定解条件</h2><p>从数学上来讲, 单个偏微分方程一般有 <strong>无穷多个解</strong>, 如果要确定我们需要的解, 就需要附加一些条件, 称为 <strong>定解条件</strong>.<br>根据问题的物理意义, 常见的定解条件可分为 <strong>初始条件</strong> 与 <strong>边界条件</strong> 两大类, 一个偏微分方程与定解条件一起构成对于具体问题的完整描述, 称为 <strong>定解问题</strong>. 即有:  </p>
+<p>$$ 定解问题 \begin{cases} 泛定方程: 描述一个具体物理过程的偏微分方程. \\ 定解条件 \begin{cases} 初始条件: 表示初始状态的条件; \\ 边界条件: 描述边界上的约束情况. \end{cases} \end{cases} $$</p>
+<h3 id="初始条件"><a href="#初始条件" class="headerlink" title="初始条件"></a>初始条件</h3><p>分别以三类典型问题为例来说明初始条件的表达式.  </p>
+<ol>
+<li>$\displaystyle弦振动问题\begin{cases} 弦在开始时刻的位移: u(x, 0) &#x3D; \phi(x), x \in \Omega 或 0 \leq x \leq L; \\ 弦在开始时刻的速度: u_t(x, 0) &#x3D; \psi(x), x \in \Omega 或 0 \leq x \leq L. \end{cases}$  </li>
+<li>热传导问题——开始时刻温度分布: $u(x, 0) &#x3D; \phi(x), x \in \Omega 或 0 \leq x \leq L.$  </li>
+<li>Laplace 方程及 Poisson 方程——与时间无关: 不提初始条件.</li>
+</ol>
+<p><strong>注:</strong> 对于不同类型的方程, 初始条件的个数有别 $\displaystyle\left(\frac{\partial^mu}{\partial t^m}\right) \to m$ 个初始条件.  </p>
+<h3 id="边界条件"><a href="#边界条件" class="headerlink" title="边界条件"></a>边界条件</h3><ol>
+<li>弦振动问题</li>
+</ol>
+<p>以右端点 $x &#x3D; L$ 为例, 有如下三种情形:  </p>
+<p>(1) 固定端(端点保持不动):  </p>
+<p>$$ u(L, t) &#x3D; 0, t \geq 0; $$</p>
+<p>(2) 自由端(端点可以在垂直于 $x$ 轴的直线上自由滑动, 没有受到垂直方向的外力):  </p>
+<p>$$ \left.T\frac{\partial u}{\partial x}\right|_{x &#x3D; L} &#x3D; 0, 即有 \quad u_x(L, t) &#x3D; 0; $$</p>
+<p>(3) 弹性支承端(端点固定在一弹性支承上, 此时支承的伸缩满足 Hooke 定律):  </p>
+<p>$$ Tu_x|<em>{x &#x3D; L} &#x3D; -ku|</em>{x &#x3D; L}, \quad 即有 \quad u_x(L, t) + \sigma u(L, t) &#x3D; 0, \sigma &#x3D; \frac{k}{T} $$</p>
+<p>以上三种情形的右端均为 $0$, 称为 <strong>齐次边界条件</strong>. 在数学上, 也可以将右端的 $0$ 替换为关于 $t$ 的已知函数 $f(t)$, 以考虑更为一般的边界条件, 此时称为 <strong>非齐次边界条件</strong>.  </p>
+<ol start="2">
+<li>热传导问题</li>
+</ol>
+<p>(1) 温度分布已知(设 $\partial\Omega$ 为 $\Omega$ 的边界):  </p>
+<p>$$ u(x, y, z, t)|_{(x, y, z)\in\partial\Omega} &#x3D; f(x, y, z, t), t \geq 0 $$</p>
+<p>(2) 物体与周围介质绝热($\partial\Omega$ 上的热量流动为 0):</p>
+<p>$$ \left.\frac{\partial u}{\partial n}\right|_{\partial\Omega} &#x3D; 0, t \geq 0 $$</p>
+<p>(3) 物体与周围介质有热交换:  </p>
+<p>$$ \left.\left(\frac{\partial u}{\partial n} + \sigma u\right)\right|<em>{\partial\Omega} &#x3D; \sigma u_1 |</em>{\partial\Omega} $$</p>
+<ol start="3">
+<li>位势方程</li>
+</ol>
+<p>Laplace 方程和 Poisson 方程也有类似三种边界条件, 但是与时间变量 $t$ 无关.  </p>
+<p>以上边界条件, 可归结为三种类型($f$ 为定义在 $\partial\Omega$ 上的已知函数):  </p>
+<p>(1) 第一类边界条件(Dirichlet 边界条件: 在边界上直接给出未知函数的值):  </p>
+<p>$$ u|_{\partial\Omega} &#x3D; f $$</p>
+<p>(2) 第二类边界条件(Neumann 边界条件: 在边界上给出未知函数沿边界的外法线方向导数的值):  </p>
+<p>$$ \left.\frac{\partial u}{\partial n}\right|_{\partial\Omega} &#x3D; f $$</p>
+<p>(3) 第三类边界条件(Robin 边界条件: 在边界上给出未知函数及其沿边界的外法线方向导数的某一线性组合的值):  </p>
+<p>$$ \left.\left(\frac{\partial u}{\partial n} + \sigma u \right)\right|_{\partial\Omega} &#x3D; f $$</p>
+<p>除了上面的三类基本边界条件, 有时由于物理上的合理性的要求还需要对方程中的未知函数加以其他附加条件(如周期性、有限值、单值性等限制), 这些附加条件称为 <strong>自然边界条件</strong>.<br>在有些情形下还涉及(不同介质界面处的) <strong>衔接条件</strong>. 例如研究两种不同材质的杆接成的一根杆的纵振动问题.  </p>
+<h3 id="定解问题"><a href="#定解问题" class="headerlink" title="定解问题"></a>定解问题</h3><p>偏微分方程加上相应的定解条件所构成的问题称为 <strong>定解问题</strong>, 根据定解条件类型的不同可将定解问题进行如下分类:  </p>
+<ol>
+<li>初值问题 (Cauchy 问题): 只有初始条件而无边界条件的定解问题 (泛定方程 + 初始条件).  </li>
+<li>(内)边值问题: 只有边界条件而无初始条件的定解问题 (泛定方程 + 边界条件).</li>
+</ol>
+<p>(1) <strong>第一类边值问题 (Dirichlet 问题)</strong>: 方程与第一类边界条件组成的定解问题.<br>(2) <strong>第二类边值问题 (Neumann 问题)</strong>: 方程与第二类边界条件组成的定解问题.<br>(3) <strong>第三类边值问题 (Robin 问题)</strong>: 方程与第三类边界条件组成的定解问题</p>
+<ol start="3">
+<li>初边值问题 (混合问题): 既有初始条件又有边界条件的定解问题 (泛定方程 + 初始条件 + 边界条件).  </li>
+<li>混合边值问题: 不同边界部分满足不同类型的边界条件的定解问题.  </li>
+<li>外边值问题: 定解条件依然在有界闭区域上给出, 而泛定方程定义在区域 $G$ 的外部.</li>
+</ol>
+<h2 id="定解问题的适定性"><a href="#定解问题的适定性" class="headerlink" title="定解问题的适定性"></a>定解问题的适定性</h2><!-- flag of hidden posts --></div></section><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">我很可爱，请给我钱</div><div id="qr" style="display:none;"><div style="display:inline-block"><a href="/img/alipay.jpg"><img loading="lazy" src="/img/alipay.jpg" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-alipay-line"></use></svg></span></div></div><div style="display:inline-block"><a href="/img/wechatpay.png"><img loading="lazy" src="/img/wechatpay.png" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-pay-line"></use></svg></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>紅葉</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://jk-momiji.com/Partial-Differential-Equations/03/" title="偏微分方程笔记-03">http://jk-momiji.com/Partial-Differential-Equations/03/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul><script>document.addEventListener('copy', function (event) {
+  const clipboardData = event.clipboardData || window.clipboardData;
+  if (!clipboardData) { return; }
+  const text = window.getSelection().toString();
+  if (text) {
+    event.preventDefault();
+    clipboardData.setData('text/plain', text + '\n\n本文作者：紅葉\n本文链接：http://jk-momiji.com/Partial-Differential-Equations/03/\n版权声明：本博客所有文章除特别声明外，均默认采用 CC BY-NC-SA 4.0 许可协议。');
+  }
+});</script></article></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>要不要和我说些什么？</span><br><span>请文明评论哦~</span><br></div><div id="waline"></div><script src="/js/comments/waline.js" type="module" defer></script></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2022 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> 紅葉</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.0.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.8.8</span></div><div id="busuanzi"><span id="busuanzi_container_site_uv" title="总访客量"><span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-user-line"></use></svg></span><span id="busuanzi_value_site_uv"></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv" title="总访问量"><span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg></span><span id="busuanzi_value_site_pv"></span></span><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div></body></html>
